@@ -16,7 +16,7 @@ const createPayment = async (description, orderId, amount) => {
             },
             confirmation: {
                 type: 'redirect',
-                return_url: "https://pirog-dvor.netlify.app/form",
+                return_url: "https://pirog-dvor.netlify.app/success",
             },
         },
         {
