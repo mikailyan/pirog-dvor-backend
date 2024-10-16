@@ -57,15 +57,7 @@ bot.on('message', async (msg) => {
     }
 });
 
-app.post('/api/create-payment', async (req, res) => {
-    const { description, orderId, amount } = req.body;
-    try {
-        const paymentData = await createPayment(description, orderId, amount);
-        res.status(200).json(paymentData);
-    } catch (error) {
-        res.status(500).json({ message: 'Ошибка при создании платежа', error: error.message });
-    }
-});
+
 
 app.post('/success', async (req, res) => {
     const {queryId, products = [], totalPrice} = req.body;
