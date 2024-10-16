@@ -12,8 +12,8 @@ const app = express();
 const PORT = 5000;
 
 app.use(cors({
-    origin: 'https://pirog-dvor.netlify.app', // замените на ваш домен
-    methods: ['GET', 'POST', 'PUT', 'DELETE'], // допустимые методы
+    origin: 'https://pirog-dvor.netlify.app',
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
   }));
 
 app.use(express.json());
