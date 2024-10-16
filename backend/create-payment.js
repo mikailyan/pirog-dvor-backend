@@ -21,8 +21,8 @@ const createPayment = async (description, orderId, amount) => {
         },
         {
             auth: {
-                username: '469077',
-                password: 'test_rA2RKX9ZtQiVLHintw6W64Lm2OShcMafpcJg3GtWLko',
+                username: '385657',
+                password: 'test_CBydYSOMhpF8CuhTLBAJlS-qZWz_PeyQ-qJK_z47NrY',
             },
             headers: {
                 'Content-Type': 'application/json',
