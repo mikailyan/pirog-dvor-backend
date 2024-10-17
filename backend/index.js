@@ -57,16 +57,6 @@ app.use(cors({
 
 app.use(express.json());
 
-app.post('/api/create-payment', async (req, res) => {
-    const { description, orderId, amount } = req.body;
-    try {
-        const paymentData = await createPayment(description, orderId, amount);
-        res.status(200).json(paymentData);
-    } catch (error) {
-        res.status(500).json({ message: 'Ошибка при создании платежа', error: error.message });
-    }
-});
-
 
 app.listen(PORT, () => {
     console.log(`Proxy server is running on https://pirog-dvor.netlify.app`);
