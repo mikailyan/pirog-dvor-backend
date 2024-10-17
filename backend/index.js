@@ -9,7 +9,7 @@ const webUrlCont = 'https://pirogov-dvorik.ru/kontakty/';
 
 const bot = new TelegramBot(token, {polling: true});
 const app = express();
-const PORT = 5000;
+//const PORT = 5000;
 
 
 bot.on('message', async (msg) => {
@@ -57,7 +57,33 @@ app.use(cors({
 
 app.use(express.json());
 
+app.post('/api/create-payment', async (req, res) => {
+    const { description, orderId, amount } = req.body;
+    try {
+        const paymentData = await createPayment(description, orderId, amount);
+        res.status(200).json(paymentData);
+    } catch (error) {
+        res.status(500).json({ message: 'Ошибка при создании платежа', error: error.message });
+    }
+});
 
-app.listen(PORT, () => {
+app.post('/success', async (req, res) => {
+    const {queryId, products = [], totalPrice} = req.body;
+    try {
+        await bot.answerWebAppQuery(queryId, {
+            type: 'article',
+            id: queryId,
+            title: 'Успешная покупка',
+            input_message_content: {
+                message_text: ` Поздравляю с покупкой, вы приобрели товар на сумму ${totalPrice}, ${products.map(item => item.title).join(', ')}`
+            }
+        })
+        return res.status(200).json({});
+    } catch (e) {
+        return res.status(500).json({})
+    }
+})
+
+app.listen(() => {
     console.log(`Proxy server is running on https://pirog-dvor.netlify.app`);
 });
