@@ -11,13 +11,6 @@ const bot = new TelegramBot(token, {polling: true});
 const app = express();
 const PORT = 5000;
 
-app.use(cors({
-    origin: 'https://pirog-dvor.netlify.app',
-    methods: ['GET', 'POST', 'PUT', 'DELETE'],
-  }));
-
-app.use(express.json());
-
 
 bot.on('message', async (msg) => {
     const chatId = msg.chat.id;
@@ -56,6 +49,13 @@ bot.on('message', async (msg) => {
         }
     }
 });
+
+app.use(cors({
+    origin: 'https://pirog-dvor.netlify.app',
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  }));
+
+app.use(express.json());
 
 app.post('/api/create-payment', async (req, res) => {
     const { description, orderId, amount } = req.body;
