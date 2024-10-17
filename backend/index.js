@@ -75,8 +75,8 @@ app.post('/success', async (req, res) => {
             id: queryId,
             title: 'Успешная покупка',
             input_message_content: {
-                message_text: `Поздравляю с покупкой!\nВы приобрели товар на сумму: ${totalPrice}\n` + 
-    products.map(item => `${item.title} - ${item.quantity} шт.`).join('\n')
+                message_text: `Поздравляю с покупкой!\n Общая сумма заказа: ${totalPrice}\n руб.` + 
+                products.map(item => `${item.title} - ${item.quantity} шт.`).join('\n')
             }
         })
         return res.status(200).json({});
