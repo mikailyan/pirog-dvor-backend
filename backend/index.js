@@ -75,7 +75,7 @@ app.post('/success', async (req, res) => {
             id: queryId,
             title: 'Успешная покупка',
             input_message_content: {
-                message_text: `Спасибо за заказ, ${FIO}!\nЗаказ будет оплачен: ${deliverypay}\nЗаказ будет доставлен по адресу: ${street}\nС вами свяжутся по номеру ${number}\nОбщая сумма заказа: ${totalPrice} руб.\n` + 
+                message_text: `Спасибо за заказ, ${FIO}!\n\nЗаказ будет оплачен: ${deliverypay} и доставлен по адресу: ${street}\n\nС вами свяжутся по номеру ${number}\n\nОбщая сумма заказа: ${totalPrice} руб.\n` + 
                 products.map(item => `${item.title} - ${item.quantity} шт.`).join('\n')
             }
         })
