@@ -68,14 +68,14 @@ app.post('/api/create-payment', async (req, res) => {
 });
 
 app.post('/success', async (req, res) => {
-    const {queryId, products = [], totalPrice, number, street, FIO, email, comment, deliverypay} = req.body;
+    const {queryId, products = [], totalPrice, number, street, FIO, email, comment, deliverypay, Entrance, Apartment} = req.body;
     try {
         await bot.answerWebAppQuery(queryId, {
             type: 'article',
             id: queryId,
             title: 'Успешная покупка',
             input_message_content: {
-                message_text: `Спасибо за заказ, ${FIO}!\n\nЗаказ будет оплачен: ${deliverypay} и доставлен по адресу: ${street}\n\nС вами свяжутся по номеру ${number}\n\nОбщая сумма заказа: ${totalPrice} руб.\n` + 
+                message_text: `Спасибо за заказ, ${FIO}!\n\nЗаказ будет оплачен: ${deliverypay} и доставлен по адресу: ${street}, ${Entrance}, ${Apartment}\n\nС вами свяжутся по номеру ${number}\n\nОбщая сумма заказа: ${totalPrice} руб.\n` + 
                 products.map(item => `${item.title} - ${item.quantity} шт.`).join('\n')
             }
         })
